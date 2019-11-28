@@ -11,13 +11,13 @@ V svoji projektni nalogi bom analizirala podatke o svetovnem pokalu v smučarski
 
 * ženske in moške zmagovalce v skupnem seštevku svetovnega pokala (njihovo skupno število točk v skokih in poletih, število zmag v posamezni sezoni, narodnost, spol)
 * skakalce in skakalke z največ zmagami in stopničkami
-najmlajše in najstarejše dobitnike in dobitnice medalj
+* najmlajše in najstarejše dobitnike in dobitnice medalj
 * število zmag posamezne države v pokalu narodov
 * izdatke države za področje športa po državah (leto, država, delež)
 
 Vir podatkov:
-https://ec.europa.eu/eurostat/web/products-datasets/product?code=gov_10a_exp
-https://www.fis-ski.com/DB/general/statistics.html?sectorcode=JP
+* https://ec.europa.eu/eurostat/web/products-datasets/product?code=gov_10a_exp
+* https://www.fis-ski.com/DB/general/statistics.html?sectorcode=JP
 
 
 ## Program
