@@ -5,19 +5,9 @@ Repozitorij z gradivi pri predmetu APPR v študijskem letu 2019/20
 * [![Shiny](http://mybinder.org/badge.svg)](http://mybinder.org/v2/gh/jaanos/APPR-2019-20/master?urlpath=shiny/APPR-2019-20/projekt.Rmd) Shiny
 * [![RStudio](http://mybinder.org/badge.svg)](http://mybinder.org/v2/gh/jaanos/APPR-2019-20/master?urlpath=rstudio) RStudio
 
-## Analiza svetovnega pokala v smučarskih skokih
+## Analiza transporta v Sloveniji in Evropi
 
-V svoji projektni nalogi bom analizirala podatke o svetovnem pokalu v smučarskih skokih in sicer od leta 1980 dalje, kjer me bo zanimala statistika o poletih in skokih in kako na rezultate vplivajo različni faktorji (starost, spol, narodnost,..). V tabelah bom predstavila:
-
-* ženske in moške zmagovalce v skupnem seštevku svetovnega pokala (njihovo skupno število točk v skokih in poletih, število zmag v posamezni sezoni, narodnost, spol)
-* skakalce in skakalke z največ zmagami in stopničkami
-* najmlajše in najstarejše dobitnike in dobitnice medalj
-* število zmag posamezne države v pokalu narodov
-* izdatke države za področje športa po državah (leto, država, delež)
-
-Vir podatkov:
-* https://ec.europa.eu/eurostat/web/products-datasets/product?code=gov_10a_exp
-* https://www.fis-ski.com/DB/general/statistics.html?sectorcode=JP
+V svoji projektni nalogi bom analizirala podatke o potniškem transportu v Sloveniji in Evropi. Najprej bom primerjala cestni, železniški, letalski in pomorski promet v obodbju med 2010 in 2019. Nadaljnje, se bom osredotočila na analizo cestnega prometa, saj predvidevam, da bo predstavljal največji delež celotnega prometa. 
 
 
 ## Program
