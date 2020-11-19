@@ -18,7 +18,8 @@ V svoji projektni nalogi bom analizirala podatke o potniškem transportu v Slove
 5. tabela: Cestna vozila v Sloveniji (vrsta vozila, statistična regija, leto).
 6. tabela: Delovne migracije v Sloveniji (regija, delovno aktivno prebivalstvo, indeks dnevnih migracij, leto).
 7. tabela: Nekateri kazalniki transporta po statističnih regijah (število osebnih avtomobilov, povprečna starost osebnih avtomobilov, gostota cestnega omrežja, število umrlih v cestnoprometnih nesrečah).
-Vire bom črpala iz [Eurostata](https://ec.europa.eu/eurostat) in iz [SiStata](https://pxweb.stat.si/SiStat/sl).
+
+* Vire bom črpala iz [Eurostata](https://ec.europa.eu/eurostat) in iz [SiStata](https://pxweb.stat.si/SiStat/sl).
 
 
 ## Program
