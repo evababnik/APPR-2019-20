@@ -7,7 +7,9 @@ Repozitorij z gradivi pri predmetu APPR v študijskem letu 2019/20
 
 ## Analiza transporta v Sloveniji in Evropi
 
-V svoji projektni nalogi bom analizirala podatke o potniškem transportu v Sloveniji in Evropi. Najprej bom primerjala cestni, železniški, letalski in pomorski promet v obodbju med 2010 in 2019. Nadaljnje, se bom osredotočila na analizo cestnega prometa, saj predvidevam, da bo predstavljal največji delež celotnega prometa. 
+V svoji projektni nalogi bom analizirala podatke o potniškem transportu v Sloveniji in Evropi v obdobju med 2006 in 2014, saj menim, da je to obdobje zaradi finančne krize 2008 za analizo podatkov zelo zanimivo. Najprej bom analizirala cestni, železniški, letalski in pristaniški potniški promet v Sloveniji. Zanimalo me bo, kako se je struktrua prometa skozi čas spreminjala in to nato primerjala s podatki o potniškem prometu v drugih članicah EU. Nadaljnje se bom osredotočila samo na Slovenijo, kjer bom analizirala cestni promet, saj predvidevam, da največ prebivalcev Slovenije uporablja to vrso prometa. Cestni promet bom analizirala po regijah, kjer me bo zanimalo, kako se je po posameznih regijah in skozi čas spreminjalo število registriranih avtomobilov, povprečna starost avtomobilov in kakšne vrste motornih vozil prevladujejo, ter če je to kako povezano s številom delovnih migracij ter stopnjo brezposlenosti. Zanimalo me bo tudi kako se je po regijah spreminjala gostota cestnega omrežja po regijah in kako je to povezano s številom umrlih v prometnih nesrečah. 
+
+Vire bom črpala iz [Eurostata](https://ec.europa.eu/eurostat) in iz [SiStata](https://pxweb.stat.si/SiStat/sl).
 
 
 ## Program
