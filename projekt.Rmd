@@ -1,6 +1,6 @@
 ---
-title: "Poročilo pri predmetu Analiza podatkov s programom R"
-author: "Študent FMF"
+title: "Analiza transporta v Sloveniji in Evropi"
+author: "EVA BABNIK"
 output:
   html_document: default
   pdf_document:
@@ -25,10 +25,7 @@ source("lib/rstudio.r", encoding="UTF-8")
 ```
 
 # Izbira teme
-
-Za vzorec bomo prikazali nekaj podatkov o slovenskih občinah.
-
-![](slike/grb.png)
+V svoji projektni nalogi bom analizirala podatke o potniškem transportu v Sloveniji in Evropi v obdobju med 2009 in 2018. Najprej bom analizirala cestni, železniški, letalski in pristaniški potniški promet v Sloveniji. Zanimalo me bo, kako se je struktrua prometa skozi čas spreminjala in to nato primerjala s podatki o potniškem prometu v drugih članicah EU. Nadaljnje se bom osredotočila samo na Slovenijo, kjer bom analizirala cestni promet, saj predvidevam, da največ prebivalcev Slovenije uporablja to vrso prometa. Cestni promet bom analizirala po regijah, kjer me bo zanimalo, kako se je po posameznih regijah in skozi čas spreminjalo število registriranih avtomobilov, povprečna starost avtomobilov in kakšne vrste motornih vozil prevladujejo, ter če je to kako povezano s številom delovnih migracij ter stopnjo brezposlenosti. Zanimalo me bo tudi kako se je po regijah spreminjala gostota cestnega omrežja po regijah in kako je to povezano s številom umrlih v prometnih nesrečah.
 
 ***
 
@@ -37,25 +34,24 @@ Za vzorec bomo prikazali nekaj podatkov o slovenskih občinah.
 ```{r uvoz, echo=FALSE, message=FALSE}
 source("uvoz/uvoz.r", encoding="UTF-8")
 ```
+Iz statističnega urada sem uvozila podatke o transportu v Sloveniji.
+Podatki so v štirih razpredelnicah v obliki *tidy data*.
 
-Uvozili smo podatke o občinah v obliki CSV s statističnega urada ter v obliki HTML
-z Wikipedije. Podatke imamo v dveh razpredelnicah v obliki *tidy data*.
+1. `st_avtomobilov` - podatki o številu avtomobilov za vsako regijo med letoma 2009 in 2018
+  - `regija` - spremenljivka: ime regije,
+  - `leto` - spremenljivka: leto podatka,
+  - `stevilo avtomobilov` - meritev: število avtomobilov v posamezni regiji po letih na 1000 prebivalcev.
 
-1. `druzine` - podatki o družinah za vsako občino
-  - `obcina` - spremenljivka: ime občine (neurejen faktor),
-  - `velikost.druzine` - spremenljivka: število otrok v družini (število: 1, 2, 3 ali 4, kjer zadnja vrednost pomeni 4 ali več),
-  - `stevilo.druzin` - meritev: število družin z ustreznim številom otrok v ustrezni občini (število).
+2. `starost_avtomobilov` - podatki o starosti avtomobilov po regijah med letoma 2009 in 2018
+  - `regija` - spremenljivka: ime regije,
+  - `leto` - spremenljivka: leto podatka,
+  - `starost avtomobilov` - meritev: povprečna starost avtomobilov v posamezni regiji po letih na         1000 prebivalcev.
 
-2. `obcine` - podatki o občinah
-  - `obcina` - spremenljivka: ime občine (neurejen faktor),
-  - `povrsina` - meritev: površina občine v km$^2$ (število),
-  - `prebivalci` - meritev: prebivalstvo občine (število),
-  - `gostota` - meritev: število prebivalcev na km$^2$ (število),
-  - `naselja` - meritev: število naselij v občini (število),
-  - `ustanovitev` - meritev: leto ustanovitve občine (število),
-  - `pokrajina` - meritev: pokrajina, ki ji občina pripada (neurejen faktor),
-  - `regija` - meritev: regija, ki ji občina pripada (neurejen faktor),
-  - `odcepitev` - meritev: podatki o občinah, od katerih se je občina odcepila (besedilo).
+3. `delez_delovnih_migrantov` - podatki o delovnih migracijah za regije med letoma 2009 in 2018
+  - `regija` - spremenljivka: ime regije,
+  - `leto` - spremenljivka: leto podatka,
+  - `delež delovnih migrantov` - meritev: delez delovnih migrantov glede na delovno aktivno
+  prebivalstvo v regijah
 
 **Opomba**: da bi razpredelnica `obcine` res bila v obliki *tidy data*, bi morali odstraniti stolpec `gostota` (saj je izpeljan iz stolpcev `povrsina` in `prebivalci`), podatke o pokrajinah pa bi morali premakniti v drugo razpredelnico, saj nekatere občine pripadajo dvema pokrajinama. Podobno bi morali narediti tudi s stolpcem `odcepitev`.
 
