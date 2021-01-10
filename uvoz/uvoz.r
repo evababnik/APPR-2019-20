@@ -28,7 +28,7 @@ uvozi.migracije <- function(){
                                          ";", escape_double = FALSE, trim_ws = TRUE, 
                                          skip = 1, col_names = TRUE, 
                                          locale=locale(encoding = 'Windows-1250'))
-  View(delez_delovnih_migrantov)
+
   colnames(delez_delovnih_migrantov) <- c("regija",2009:2019)
   delez_delovnih_migrantov$`2019` <- NULL
   delez_delovnih_migrantov <- delez_delovnih_migrantov %>% pivot_longer(-regija, names_to = "leto",values_to = "migranti", names_transform=list(leto=parse_number))
@@ -42,7 +42,7 @@ uvozi.povprecne_place <- function(){
                                          ";", escape_double = FALSE, trim_ws = TRUE, 
                                          skip = 1, col_names = TRUE, 
                                          locale=locale(encoding = 'Windows-1250'))
-  View(povprecne_place)
+
   colnames(povprecne_place) <- c("regija",2009:2019)
   povprecne_place$`2019` <- NULL
   povprecne_place <- povprecne_place[-c(1, 10),]
@@ -51,4 +51,17 @@ uvozi.povprecne_place <- function(){
 }
 povprecne_place <- uvozi.povprecne_place()
 stevilo_starost_smrti_migrantje <- starost_avtomobilov %>% full_join(st_avtomobilov)  %>% full_join(stevilo_umrlih) 
-View(stevilo_starost_smrti_migrantje)
+
+
+uvozi.vrste_vozil <- function(){
+  vrste_vozil <- read_delim("podatki/vrste_vozil.csv", 
+                                           ";", escape_double = FALSE, trim_ws = TRUE,
+                                           col_names = TRUE, 
+                                      locale=locale(encoding = 'Windows-1250'))
+  colnames(vrste_vozil)[1] <- "vrsta"
+   vrste_vozil[2] <- NULL
+  vrste_vozil[1] <- c("kolesa z motorjem", "motorna kolesa", "osebni avtomobili", "avtobusi", "tovorna motorna vozila", "traktorji")
+  vrste_vozil <- vrste_vozil  %>% pivot_longer(-`vrsta`, names_to = "leto",values_to = "stevilo_vozil", names_transform=list(leto=parse_number))
+  return(vrste_vozil)
+}
+vrste_vozil <- uvozi.vrste_vozil()
