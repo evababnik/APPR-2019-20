@@ -8,8 +8,8 @@ uvozi <- function(ime_datoteke){
   tabela <- read_delim(ime, ";", escape_double = FALSE, trim_ws = TRUE, 
                        skip = 1,  col_names = TRUE, locale=locale(encoding = 'Windows-1250')) 
   tabela <- tabela[,2:12]
-  colnames(tabela)[1] <- "regija"
-  tabela <- tabela %>% pivot_longer(-regija, names_to = "leto",values_to = "vrednost", names_transform=list(leto=parse_number))
+  colnames(tabela)[1] <- "Regija"
+  tabela <- tabela %>% pivot_longer(-Regija, names_to = "leto",values_to = "vrednost", names_transform=list(leto=parse_number))
   return(tabela)
 }
 
@@ -29,9 +29,9 @@ uvozi.migracije <- function(){
                                          skip = 1, col_names = TRUE, 
                                          locale=locale(encoding = 'Windows-1250'))
 
-  colnames(delez_delovnih_migrantov) <- c("regija",2009:2019)
+  colnames(delez_delovnih_migrantov) <- c("Regija",2009:2019)
   delez_delovnih_migrantov$`2019` <- NULL
-  delez_delovnih_migrantov <- delez_delovnih_migrantov %>% pivot_longer(-regija, names_to = "leto",values_to = "migranti", names_transform=list(leto=parse_number))
+  delez_delovnih_migrantov <- delez_delovnih_migrantov %>% pivot_longer(-Regija, names_to = "leto",values_to = "migranti", names_transform=list(leto=parse_number))
   return(delez_delovnih_migrantov)
 }
 
@@ -43,10 +43,10 @@ uvozi.povprecne_place <- function(){
                                          skip = 1, col_names = TRUE, 
                                          locale=locale(encoding = 'Windows-1250'))
 
-  colnames(povprecne_place) <- c("regija",2009:2019)
+  colnames(povprecne_place) <- c("Regija",2009:2019)
   povprecne_place$`2019` <- NULL
   povprecne_place <- povprecne_place[-c(1, 10),]
-  povprecne_place <- povprecne_place %>% pivot_longer(-regija, names_to = "leto",values_to = "place", names_transform=list(leto=parse_number))
+  povprecne_place <- povprecne_place %>% pivot_longer(-Regija, names_to = "leto",values_to = "place", names_transform=list(leto=parse_number))
   return(povprecne_place)
 }
 povprecne_place <- uvozi.povprecne_place()
@@ -65,3 +65,16 @@ uvozi.vrste_vozil <- function(){
   return(vrste_vozil)
 }
 vrste_vozil <- uvozi.vrste_vozil()
+
+uvozi_podatke_za_slovenijo <- function(){
+  podatki_za_slovenijo <- read_delim("podatki/podatki_za_slovenijo.csv", 
+                                     ";", escape_double = FALSE, trim_ws = TRUE, 
+                                     skip = 1, col_names = TRUE, 
+                                     locale=locale(encoding = 'Windows-1250') )
+  podatki_za_slovenijo[2] <- NULL
+  colnames(podatki_za_slovenijo)[1] <- "kazalnik"
+  podatki_za_slovenijo <- podatki_za_slovenijo  %>% pivot_longer(-`kazalnik`, names_to = "leto",values_to = "stevilo", names_transform=list(leto=parse_number))
+ return(podatki_za_slovenijo) 
+}
+  
+podatki_za_slovenijo <- uvozi_podatke_za_slovenijo()

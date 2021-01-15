@@ -1,4 +1,3 @@
-
 # 3. faza: Vizualizacija podatkov
 
 
@@ -57,6 +56,7 @@ zemljevid.razmerje_avtomobili_smrti <- ggplot() +
   scale_fill_gradient(low = '#25511C', high='#2BFF00', limits = c(0.8, 1.93))
 zemljevid.razmerje_avtomobili_smrti$labels$fill <- 'Stevilo umrlih na 10.000 avtomobilov'
 
+plot(zemljevid.razmerje_avtomobili_smrti)
 
 
 #graf stevila umrlih po regijah in letih
@@ -85,17 +85,13 @@ zemljevid.razmerje_avtomobili_smrti$labels$fill <- 'Stevilo umrlih na 10.000 avt
 #plot(graf.povprecne_place)
 
 #povezana med delovnimi migracijami in stevilom avtomobilov
-tabela_migracije_avti <- delez_delovnih_migrantov %>% full_join(st_avtomobilov)
-graf_migracije_avti <- ggplot(data = tabela_migracije_avti, aes(x=st_avtomobilov, y=migranti, color=Regija)) + geom_point(aes(frame=leto, ids=Regija)) + scale_x_log10()
-graf_migracije_avti <- graf_migracije_avti + xlab('Povprečno število avtomobilov') + ylab('Delež delovnih migrantov')
-graf_migracije_avti <- ggplotly(graf_migracije_avti)
 
 #povezava med plačami in starostjo avtomobilov
 
 tabela_place_avti <- povprecne_place %>% full_join(starost_avtomobilov)
 
-graf_place_avti <- ggplot(data = tabela_place_avti, aes(x=starost_avtomobila, y=place, color=Regija)) + geom_point(aes(frame=leto, ids=Regija)) + scale_x_log10() 
-graf_place_avti <- graf_place_avti + xlab('Starost avtomobila') + ylab('Povprečna mesečna placa') 
-graf_place_avti <- ggplotly(graf_place_avti) 
+graf_place_avti <- ggplot(data = tabela_place_avti, aes(x=starost_avtomobila, y=place, color=Regija)) + geom_point(aes(frame=leto, ids=Regija)) + scale_x_log10()
+graf_place_avti <- graf_place_avti + xlab('Starost avtomobila') + ylab('Povprečna mesečna placa')
+graf_place_avti <- ggplotly(graf_place_avti)
 
-print(graf_place_avti)
+plot(graf_place_avti)

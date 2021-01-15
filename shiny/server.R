@@ -22,3 +22,11 @@ shinyServer(function(input, output) {
       ggtitle(main) + xlab("Število naselij") + ylab("Število občin")
   })
 })
+library(shiny)
+
+function(input, output) {
+  
+  output$zemljevid.leto <- renderPlot({
+    zemljevid.leto(input$leto) + theme(axis.text.x = element_blank())
+  })
+}

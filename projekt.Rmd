@@ -55,52 +55,50 @@ Podatki so v štirih razpredelnicah v obliki *tidy data*.
 
 **Opomba**: da bi razpredelnica `obcine` res bila v obliki *tidy data*, bi morali odstraniti stolpec `gostota` (saj je izpeljan iz stolpcev `povrsina` in `prebivalci`), podatke o pokrajinah pa bi morali premakniti v drugo razpredelnico, saj nekatere občine pripadajo dvema pokrajinama. Podobno bi morali narediti tudi s stolpcem `odcepitev`.
 
-Spodnji graf prikazuje porazdelitev števila naselij v občinah.
 
-```{r histogram, echo=FALSE, message=FALSE, fig.align='center', fig.cap='Histogram števila naselij v občinah'}
-ggplot(obcine, aes(x=naselja)) + geom_histogram() +
-  ggtitle("Pogostost števila naselij") + xlab("Število naselij") + ylab("Število občin")
-```
 
 ***
 
-# Analiza in vizualizacija podatkov
 
+# Analiza in vizualizacija podatkov
 ```{r vizualizacija, echo=FALSE, message=FALSE, warning=FALSE, results='hide'}
 source("vizualizacija/vizualizacija.r", encoding="UTF-8")
 ```
 
-Spodnji zemljevid prikazuje povprečno velikost družine za vsako občino.
-
-```{r zemljevid, echo=FALSE, fig.align='center', fig.cap='Zemljevid povprečnega števila otrok v družini'}
-ggplot() + geom_polygon(data=left_join(zemljevid, povprecja, by=c("OB_UIME"="obcina")),
-                        aes(x=long, y=lat, group=group, fill=povprecje)) +
-  ggtitle("Povprečno število otrok v družini") + xlab("") + ylab("") +
-  guides(fill=guide_colorbar(title="Povprečje"))
+Za začetek je tu graf, ki prikazuje kako se je skozi čas spreminjala struktura registriranih cestnih vozil v Sloveniji.Kot lahko vidimo, so vsa leta daleč največji delež v strukturi predstavljali osebni avtomobili, sledili so jim traktorji in tovorna motorna vozila. Zanimivo je, da je registriranih motornih koles relativno malo.
+```{r graf_vozil, echo=FALSE, message=FALSE, fig.align='center', warning = FALSE}
+plot(graf_vozil)
 ```
 
+Ker med vozili prevladujejo osebni avtomobili, se bomo v nadaljevanju pri analizi osredotočili le na njih. Spodnji graf prikazuje kako se je spreminjalo število avtomobilov na 100.000 prebivalcev skozi čas in glede na regijo.
+```{r graf.st_avtomobilov, echo=FALSE, message=FALSE, fig.align='center', warning = FALSE}
+plot(graf.st_avtomobilov)
+```
+Opazimo lahko, da je bilo število avtomobilov vsa leta najvišje v Goriški regiji, najnižje pa v Zasavski regiji. V obodbju po krizi je skoraj v vseh regijah moč opaziti padajočo oziroma ravno krivuljo, kar pomeni da ljudje zaradi krize najverjetneje niso kupovali avtomobilov. Leta 2014 se je število avtomobilov v večini regij zopet začelo povečevati.
+
+Spodnji zemljevid prikazuje povprečno število umrlih v cestnoprometnih nesrečah na 10.000  avtomobilov v obodbju med 2009 in 2018 za posamezne regije. 
+```{r zemljevid.razmerje_avtomobili_smrti, echo=FALSE, message=FALSE, fig.align='center', warning = FALSE}
+plot(zemljevid.razmerje_avtomobili_smrti)
+```
+Kot lahko opazimo na zemljevidu, je razmerje med številom umrlih v prometnih nesrečah in številom avtomobilov najnižje v Osrednjeslovnenski regiji, najvišje pa v Primorsko-notranjski regiji.
+
+Spodnji graf prikazuje razmerje med starostjo avtomobila in povprečno mesečno plačo.
+```{r graf_place_avti, echo=FALSE, message=FALSE, fig.align='center', warning = FALSE}
+graf_place_avti
+```
+Opazimo lahko korelacijo med povprečnimi mesečnimi plačami in povprečno starostjo avtomobila. V Osrednjeslovenski regiji so bile vsa leta mesečne neto plače najvišje, kar je najverjetneje tudi razlog, da so prebivalci lahko hitreje menjali svoje avtomobile. Mesečna neto plača je medtem vsa leta najnižja v Primorsko-notranjski regiji, prav tako pa imajo tam v povprečju najstarejše avtomobile. 
+```{r graf_migracije_avti, echo=FALSE, message=FALSE, fig.align='center', warning = FALSE}
+graf_migracije_avti
+```
+Na grafu lahko opazimo, da predpostavka, da večji delež delovnih migranotv pomeni večje število avtomobilov, za regije Zasavska, Obalno-kraška in Goriška ne drži, medtem ko pri ostalih regijah to povezavo lahko opazimo.
 ***
 
 # Napredna analiza podatkov
-
-```{r analiza, echo=FALSE, message=FALSE}
-source("analiza/analiza.r", encoding="UTF-8")
-```
-
-Spodnji graf prikazuje povezavo med številom naselij in površino občine.
-
-```{r graf, echo=FALSE, fig.align='center', fig.cap='Povezava med številom naselij in površino občine'}
-ggplot(inner_join(obcine, data.frame(obcina=names(skupine),
-                                     skupina=factor(skupine)), by="obcina")
-, aes(x=povrsina, y=naselja, color=skupina, size=prebivalci/1000)) + geom_point() +
-  ggtitle("Število naselij glede na površino občine") +
-  xlab(expression("Površina (km"^2 * ")")) + ylab("Št. naselij") +
-  guides(color=guide_legend(title="Skupina"),
-         size=guide_legend(title="Prebivalci (* 1000)"))
+Za konec sem poskusila še napovedati kako se bo do leta 2025 spreminjalo število umrlih v prometnih nesrečah na 10.000 avtombilov. Opazimo lahko, da so že zadnja leta številke - kljub naraščanju števila avtomobilov -  vsako leto nižje, kar pomeni, da se bo ta trend najverjetneje nadaljeval. Razlog je morda v tem, da so ljudje zaradi številnih akcij, bolj ozaveščeni o varnosti na cestah. 
+```{r analiza, echo=FALSE, message=FALSE, error=FALSE, warning=FALSE, results='hide'}
+source('analiza/analiza.r', encoding='UTF-8')
 ```
 
 ***
 
-```{r shiny, echo=FALSE}
-shinyAppDir("shiny", options=list(width="100%", height=600))
-```
+
