@@ -17,7 +17,7 @@ source('lib/libraries.r', encoding = 'UTF-8')
 source('uvoz/uvoz.r', encoding = 'UTF-8')
 
 #struktura cestnih vozil skozi čas
-graf_vozil <- ggplot(vrste_vozil, aes(x=leto, y=stevilo_vozil, fill=vrsta)) + 
+graf_vozil <- ggplot(vrste_vozil, aes(x=leto, y=stevilo_vozil, fill=vrsta)) + labs(title="Vrste cestnih vizil v Sloveniji med letoma 2008 in 2009") + xlab("Leto") + ylab("Število vozil") + 
   geom_area()
 
 #graf stevila avtomobilov po regijah in letih
@@ -58,7 +58,18 @@ zemljevid.razmerje_avtomobili_smrti <- ggplot() +
 zemljevid.razmerje_avtomobili_smrti$labels$fill <- 'Stevilo umrlih na 10.000 avtomobilov'
 
 
+graf_rast_eu <- ggplot(rast_evropa, aes(x= reorder(name,-value),value,
+                                        fill = ifelse(name == "Slovenija", "Highlighted", "Normal") ), 
+                       label = name) + geom_bar(stat = "identity") + ylab("Zmanjšanje umrlih v prometnih nesrečah (v %)")+
+  geom_text(aes(label = name), angle = 90, hjust = -.05, size = 3) +
+  theme(axis.title.x=element_blank(),
+        axis.text.x=element_blank(),
+        axis.ticks.x=element_blank(),
+        legend.position = "none") + 
+  geom_hline(yintercept = mean(rast_evropa$value), color="green")
 
+
+plot(graf_rast_eu)
 #graf stevila umrlih po regijah in letih
 #graf.st_umrlih <- ggplot((data=stevilo_umrlih), aes(x=leto, y=stevilo_umrlih, col=Regija)) + 
 # geom_point() + geom_line() + theme_classic() +  scale_x_continuous('Leto',breaks = seq(2009, 2018, 1), limits = c(2009, 2018)) + labs(title='Stevilo umrlih v prometnih nesrečah na 10000 prebivalcev po regijah 2009-2018')

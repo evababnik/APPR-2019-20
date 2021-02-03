@@ -1,5 +1,5 @@
 ---
-title: "Analiza transporta v Sloveniji in Evropi"
+title: "Analiza transporta v Sloveniji"
 author: "EVA BABNIK"
 output:
   html_document: default
@@ -25,7 +25,7 @@ source("lib/rstudio.r", encoding="UTF-8")
 ```
 
 # Izbira teme
-V svoji projektni nalogi bom analizirala podatke o potniškem transportu v Sloveniji in Evropi v obdobju med 2009 in 2018. Najprej bom analizirala cestni, železniški, letalski in pristaniški potniški promet v Sloveniji. Zanimalo me bo, kako se je struktrua prometa skozi čas spreminjala in to nato primerjala s podatki o potniškem prometu v drugih članicah EU. Nadaljnje se bom osredotočila samo na Slovenijo, kjer bom analizirala cestni promet, saj predvidevam, da največ prebivalcev Slovenije uporablja to vrso prometa. Cestni promet bom analizirala po regijah, kjer me bo zanimalo, kako se je po posameznih regijah in skozi čas spreminjalo število registriranih avtomobilov, povprečna starost avtomobilov in kakšne vrste motornih vozil prevladujejo, ter če je to kako povezano s številom delovnih migracij ter stopnjo brezposlenosti. Zanimalo me bo tudi kako se je po regijah spreminjala gostota cestnega omrežja po regijah in kako je to povezano s številom umrlih v prometnih nesrečah.
+V svoji projektni nalogi bom analizirala podatke o potniškem transportu v Sloveniji v obdobju med 2009 in 2018. Osredotočila se bom predvsem na cestni promet, ki ga bom analizirala po regijah, kjer me bo zanimalo, kako se je po posameznih regijah in skozi čas spreminjalo število registriranih avtomobilov, povprečna starost avtomobilov in kakšne vrste motornih vozil prevladujejo, ter če je to kako povezano s številom delovnih migracij ter višino mesečnih neto plač. Zanimalo me bo tudi če obstaja povezava med številom avtomobilov v posameznih regijah in med številom umrlih v prometnih nesrečah.
 
 ***
 
@@ -52,6 +52,11 @@ Podatki so v štirih razpredelnicah v obliki *tidy data*.
   - `leto` - spremenljivka: leto podatka,
   - `delež delovnih migrantov` - meritev: delez delovnih migrantov glede na delovno aktivno
   prebivalstvo v regijah
+
+4. `povprecne_mesecne_place` - podatki o povprečnih mesečnih neto plačah po regijah za obodbje 2009 in 2019
+  - `regija`- spremenljivka: ime regije,
+  - `leto`- spremenljivka: leto podatka,
+  - `povprečna neto plača`- meritev: povprečna mesečna neto plača
 
 **Opomba**: da bi razpredelnica `obcine` res bila v obliki *tidy data*, bi morali odstraniti stolpec `gostota` (saj je izpeljan iz stolpcev `povrsina` in `prebivalci`), podatke o pokrajinah pa bi morali premakniti v drugo razpredelnico, saj nekatere občine pripadajo dvema pokrajinama. Podobno bi morali narediti tudi s stolpcem `odcepitev`.
 

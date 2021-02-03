@@ -2,6 +2,7 @@
 library(readr)
 library(dplyr)
 library(tidyverse)
+library(data.table)
 
 uvozi <- function(ime_datoteke){
   ime <- paste0("podatki/", ime_datoteke, ".csv")
@@ -78,3 +79,35 @@ uvozi_podatke_za_slovenijo <- function(){
 }
   
 podatki_za_slovenijo <- uvozi_podatke_za_slovenijo()
+
+uvozi_podatke_umrlih_v_evropi <- function(){
+  umrli_evropa <-  read_csv("podatki/umrli_evropa.csv", col_names = TRUE, 
+                            locale=locale(encoding = 'Windows-1250'))
+  umrli_evropa$UNIT <- NULL
+  umrli_evropa$SEX <- NULL
+  umrli_evropa$`Flag and Footnotes`<- NULL
+  umrli_evropa <- umrli_evropa[-c(1:2, 35:317, 350),]
+  umrli_evropa$GEO <- c('Belgija','Bolgarija', 'Češka','Danska', 'Nemčija','Estonija','Irska','Grčija',
+                        'Španija','Francija','Hrvaška','Italija','Ciper','Latvija','Litva',
+                        'Luksemburg','Madžarska','Malta', 'Nizozemska', 'Avstrija','Poljska','Portugalska',
+                        'Romunija','Slovenija','Slovaška','Finska','Švedska','Velika Britanija','Islandija',  
+                         'Lihtenštajn','Norveška', 'Švica', 'Belgija','Bolgarija', 'Češka','Danska', 'Nemčija','Estonija','Irska','Grčija',
+                        'Španija','Francija','Hrvaška','Italija','Ciper','Latvija','Litva',
+                        'Luksemburg','Madžarska','Malta', 'Nizozemska', 'Avstrija','Poljska','Portugalska',
+                        'Romunija','Slovenija','Slovaška','Finska','Švedska','Velika Britanija','Islandija',  
+                        'Lihtenštajn','Norveška', 'Švica')
+  View(umrli_evropa)
+  return(umrli_evropa)
+}
+umrli_evropa <- uvozi_podatke_umrlih_v_evropi()
+
+izracunaj_rast_smrt <- function(stevilo_smrti){
+  rast <- c()
+  for (i in 1: 32){
+    rast[i] <- ((as.numeric(gsub(",", "", stevilo_smrti[32 + i]))) / (as.numeric(gsub(",", "", stevilo_smrti[i]))) - 1) * 100
+  }
+  return(rast)
+}
+rast <- izracunaj_rast_smrt(umrli_evropa$Value)
+rast_evropa <- data.frame(name=umrli_evropa$GEO[1:32], value = rast)
+#rast_evropa <- rast_evropa[order(rast_evropa$value, decreasing = TRUE),]  
